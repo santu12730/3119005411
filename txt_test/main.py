@@ -1,20 +1,19 @@
-import jieba
-import gensim
 import re
 import sys
-from pip._vendor.distlib.compat import raw_input
 
+import gensim
+import jieba
 
 
 # 获取指定路径的文件内容
 def get_contents(path):
     str = ''
-    f = open(path, 'r', encoding='UTF-8')
-    line = f.readline()
+    afile = open(path, 'r', encoding='UTF-8')
+    line = afile.readline()
     while line:
         str = str + line
-        line = f.readline()
-    f.close()
+        line = afile.readline()
+    afile.close()
     return str
 
 
@@ -31,13 +30,13 @@ def filter(str):
 
 
 # 传入过滤之后的数据，通过调用gensim.similarities.Similarity计算余弦相似度
-def calc_similarity(text1, text2):
-    texts = [text1, text2]
+def calc_similarity(text_1, text_2):
+    texts = [text_1, text_2]
     dictionary = gensim.corpora.Dictionary(texts)
     corpus = [dictionary.doc2bow(text) for text in texts]
-    similarity = gensim.similarities.Similarity('-Similarity-index', corpus, num_features=len(dictionary))
-    test_corpus_1 = dictionary.doc2bow(text1)
-    cosine_sim = similarity[test_corpus_1][1]
+    a_similarity = gensim.similarities.Similarity('-Similarity-index', corpus, num_features=len(dictionary))
+    test_corpus_1 = dictionary.doc2bow(text_1)
+    cosine_sim = a_similarity[test_corpus_1][1]
     return cosine_sim
 
 
@@ -53,5 +52,5 @@ if __name__ == '__main__':
     print("文章相似度： %.2f" % similarity)
     # 将相似度结果写入指定文件
     f = open(path3, 'w', encoding="utf-8")
-    f.write("文章相似度： %.2f" % similarity)
+    f.write(sys.argv[1]+sys.argv[2]+"文章相似度： %.2f" % similarity)
     f.close()
