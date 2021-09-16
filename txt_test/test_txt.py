@@ -1,4 +1,5 @@
 import jieba
+import gensim
 import re
 
 
@@ -23,3 +24,13 @@ def filter(str):
         else:
             pass
     return result
+
+# 传入过滤之后的数据，通过调用gensim.similarities.Similarity计算余弦相似度
+def calc_similarity(text1, text2):
+    texts = [text1, text2]
+    dictionary = gensim.corpora.Dictionary(texts)
+    corpus = [dictionary.doc2bow(text) for text in texts]
+    similarity = gensim.similarities.Similarity('-Similarity-index', corpus, num_features=len(dictionary))
+    test_corpus_1 = dictionary.doc2bow(text1)
+    cosine_sim = similarity[test_corpus_1][1]
+    return cosine_sim
