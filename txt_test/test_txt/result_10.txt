@@ -1,0 +1,2 @@
+orig.txt  和  test_2.txt
+文章相似度： 0.0000

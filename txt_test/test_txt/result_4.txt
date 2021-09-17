@@ -1,0 +1,2 @@
+orig.txt  和  orig_0.8_dis_10.txt
+文章相似度： 0.9928
