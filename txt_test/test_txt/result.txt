@@ -1,2 +1,2 @@
-orig.txt  和  orig_0.8_add.txt
+005411\3119005411\txt_test\test_txt\orig.txt  和  005411\3119005411\txt_test\test_txt\orig_0.8_add.txt
 文章相似度： 0.99
